@@ -22,7 +22,7 @@ public class LightTrigger : MonoBehaviour
     {
         if (isPlayerOn)
         {
-            if (gameObject.transform.position.y >= startYPos - 0.03)
+            if (gameObject.transform.position.y >= startYPos - 0.06)
             {
                 gameObject.transform.Translate(Vector3.down*Time.deltaTime*0.25f);
             }
