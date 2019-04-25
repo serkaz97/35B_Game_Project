@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameLogicManager : MonoBehaviour
@@ -12,6 +13,11 @@ public class GameLogicManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    void HitPlayer(int power)
     {
         
     }

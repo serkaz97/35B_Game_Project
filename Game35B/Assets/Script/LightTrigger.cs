@@ -25,6 +25,7 @@ public class LightTrigger : MonoBehaviour
             if (gameObject.transform.position.y >= startYPos - 0.06)
             {
                 gameObject.transform.Translate(Vector3.down*Time.deltaTime*0.25f);
+                
             }
         }
         else if (!isPlayerOn)

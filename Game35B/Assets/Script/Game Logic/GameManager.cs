@@ -8,6 +8,13 @@ using UnityHelpers;
 public class GameManager : MonoSingleton<GameManager>
 {
 
+    private GameLogicManager _logic;
 
+
+    void Start()
+    {
+        _logic = GetComponent<GameLogicManager>();
+        
+    }
 
 }
