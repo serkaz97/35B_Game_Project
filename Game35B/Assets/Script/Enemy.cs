@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     void Start()
     {
-        
+        Debug.Log("I am an enemy!");
     }
 
     void Update()
