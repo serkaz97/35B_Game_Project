@@ -6,7 +6,7 @@ public class FireActivator : MonoBehaviour
 {
     public bool isPlayerOn;
     public float Power;
-    private ParticleSystem ps;
+    private ParticleSystem flames;
     private AudioSource audioSource;
     private LifeController lc;
 
@@ -15,9 +15,10 @@ public class FireActivator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ps = gameObject.GetComponent<ParticleSystem>();
+        flames = gameObject.GetComponent<ParticleSystem>();
         audioSource = gameObject.GetComponent<AudioSource>();      
-        ps.Stop();
+        flames.Stop();
+        audioSource.clip = fire;
         isPlayerOn = false;
         Power = 5.0f;
     }
@@ -31,7 +32,7 @@ public class FireActivator : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         isPlayerOn = true;
-        ps.Play();
+        flames.Play();
         PlayFireSound();
         lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
     }
@@ -39,27 +40,23 @@ public class FireActivator : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         isPlayerOn = false;
-        ps.Stop();
-        StopFireSound();
-        //audioSource.Stop();
-        
+        flames.Stop();
+        StopFireSound();      
     }
 
     private void OnTriggerStay(Collider other)
     {
-        lc.setDamage(Power * Time.deltaTime);
-        
+        lc.setDamage(Power * Time.deltaTime);       
     }
 
     private void PlayFireSound()
     {
-        audioSource.clip = fire;
         audioSource.Play();
+        audioSource.loop = true;
     }
 
     private void StopFireSound()
     {
-        audioSource.clip = fire;
-        audioSource.Stop();
+        audioSource.loop = false;
     }
 }
