@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class FireActivator : MonoBehaviour
 {
-    public bool isPlayerOn;
-    public float Power;
     private ParticleSystem flames;
     private AudioSource audioSource;
     private LifeController lc;
 
-    [SerializeField] private AudioClip fire;
+    public bool isPlayerOn;
+    public float Power = 5.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
+
+        audioSource = gameObject.GetComponent<AudioSource>();
         flames = gameObject.GetComponent<ParticleSystem>();
-        audioSource = gameObject.GetComponent<AudioSource>();      
         flames.Stop();
         audioSource.clip = fire;
-        
         isPlayerOn = false;
-        Power = 5.0f;
+        audioSource.volume = 0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator MuteSound()
     {
+        isPlayerOn = false;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= Time.deltaTime * 0.5f;
+            yield return null;
+        }
+
+        ps.Stop();
+
         if (audioSource.loop==false && audioSource.volume > 0f)
         {
             audioSource.volume -= 0.01f;
@@ -38,12 +44,14 @@ public class FireActivator : MonoBehaviour
     {
         isPlayerOn = true;
         flames.Play();
+        audioSource.volume = 1.0f;
         PlayFireSound();
         lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
     }
 
     private void OnTriggerExit(Collider other)
     {
+        StartCoroutine(MuteSound());
         isPlayerOn = false;
         flames.Stop();
         StopFireSound();      
@@ -51,7 +59,7 @@ public class FireActivator : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        lc.setDamage(Power * Time.deltaTime);       
+        lc.setDamage(Power * Time.deltaTime);    
     }
 
     private void PlayFireSound()
