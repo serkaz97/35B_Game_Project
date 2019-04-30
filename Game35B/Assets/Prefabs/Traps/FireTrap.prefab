@@ -4801,8 +4801,7 @@ GameObject:
   - component: {fileID: 4936321199662828740}
   - component: {fileID: 6947417799257813637}
   - component: {fileID: 4936321199662828743}
-  - component: {fileID: 7662244353495004035}
-
+  - component: {fileID: 420446070058620883}
   m_Layer: 0
   m_Name: FlamesParticleEffect
   m_TagString: Untagged
@@ -9321,9 +9320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerOn: 0
   Power: 5
-
-  fire: {fileID: 8300000, guid: f7836d6a0d795db4d87bcbc7bf22c2ae, type: 3}
-
+  fire: {fileID: 8300000, guid: 787093b0df588cb4db4ec55b00daa9ac, type: 3}
+--- !u!82 &420446070058620883
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9333,13 +9331,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-
-  m_audioClip: {fileID: 8300000, guid: 2f8317e30370ad1449a94ec677e1e634, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0
-  m_Pitch: 1.7
-  Loop: 1
-
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -9381,7 +9377,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

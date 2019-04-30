@@ -33,11 +33,6 @@ public class FireActivator : MonoBehaviour
 
         flames.Stop();
 
-        if (audioSource.loop == false && audioSource.volume > 0f)
-        {
-            audioSource.volume -= 0.01f;
-
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,6 +66,6 @@ public class FireActivator : MonoBehaviour
 
     private void StopFireSound()
     {
-        audioSource.loop = false;
+       // audioSource.loop = false;
     }
 }
