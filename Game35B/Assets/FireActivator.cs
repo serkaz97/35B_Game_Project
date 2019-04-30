@@ -4,54 +4,56 @@ using UnityEngine;
 
 public class FireActivator : MonoBehaviour
 {
-    public bool isPlayerOn;
-    public float Power;
     private ParticleSystem flames;
     private AudioSource audioSource;
     private LifeController lc;
 
-    [SerializeField] private AudioClip fire;
+    public AudioClip fire;
+    public bool isPlayerOn;
+    public float Power = 5.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
+
+        audioSource = gameObject.GetComponent<AudioSource>();
         flames = gameObject.GetComponent<ParticleSystem>();
-        audioSource = gameObject.GetComponent<AudioSource>();      
         flames.Stop();
         audioSource.clip = fire;
-        
         isPlayerOn = false;
-        Power = 5.0f;
+        audioSource.volume = 0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator MuteSound()
     {
-        if (audioSource.loop==false && audioSource.volume > 0f)
+        isPlayerOn = false;
+        while (audioSource.volume > 0)
         {
-            audioSource.volume -= 0.01f;
-
+            audioSource.volume -= Time.deltaTime * 0.5f;
+            yield return null;
         }
+
+        flames.Stop();
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         isPlayerOn = true;
         flames.Play();
+        audioSource.volume = 1.0f;
         PlayFireSound();
         lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        isPlayerOn = false;
-        flames.Stop();
-        StopFireSound();      
+        StartCoroutine(MuteSound());
+        StopFireSound();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        lc.setDamage(Power * Time.deltaTime);       
+        lc.setDamage(Power * Time.deltaTime);
     }
 
     private void PlayFireSound()
@@ -63,6 +65,6 @@ public class FireActivator : MonoBehaviour
 
     private void StopFireSound()
     {
-        audioSource.loop = false;      
+        audioSource.loop = false;
     }
 }
