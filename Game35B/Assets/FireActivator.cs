@@ -8,10 +8,9 @@ public class FireActivator : MonoBehaviour
     private AudioSource audioSource;
     private LifeController lc;
 
-    public AudioClip fire;
     public bool isPlayerOn;
     public float Power = 5.0f;
-
+    public AudioClip fire;
     void Start()
     {
 
@@ -34,6 +33,11 @@ public class FireActivator : MonoBehaviour
 
         flames.Stop();
 
+        if (audioSource.loop == false && audioSource.volume > 0f)
+        {
+            audioSource.volume -= 0.01f;
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,6 +52,8 @@ public class FireActivator : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         StartCoroutine(MuteSound());
+        isPlayerOn = false;
+        flames.Stop();
         StopFireSound();
     }
 
