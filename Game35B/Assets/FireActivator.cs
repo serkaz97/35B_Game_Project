@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireActivator : MonoBehaviour
 {
-    private ParticleSystem ps;
+    private ParticleSystem flames;
     private AudioSource audioSource;
     private LifeController lc;
 
@@ -13,9 +13,11 @@ public class FireActivator : MonoBehaviour
 
     void Start()
     {
-        ps = gameObject.GetComponent<ParticleSystem>();
-        audioSource = gameObject.GetComponent<AudioSource>();
 
+        audioSource = gameObject.GetComponent<AudioSource>();
+        flames = gameObject.GetComponent<ParticleSystem>();
+        flames.Stop();
+        audioSource.clip = fire;
         isPlayerOn = false;
         audioSource.volume = 0f;
     }
@@ -23,7 +25,6 @@ public class FireActivator : MonoBehaviour
     private IEnumerator MuteSound()
     {
         isPlayerOn = false;
-
         while (audioSource.volume > 0)
         {
             audioSource.volume -= Time.deltaTime * 0.5f;
@@ -31,24 +32,45 @@ public class FireActivator : MonoBehaviour
         }
 
         ps.Stop();
+
+        if (audioSource.loop==false && audioSource.volume > 0f)
+        {
+            audioSource.volume -= 0.01f;
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         isPlayerOn = true;
-        ps.Play();
+        flames.Play();
         audioSource.volume = 1.0f;
-
+        PlayFireSound();
         lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
     }
 
     private void OnTriggerExit(Collider other)
     {
         StartCoroutine(MuteSound());
+        isPlayerOn = false;
+        flames.Stop();
+        StopFireSound();      
     }
 
     private void OnTriggerStay(Collider other)
     {
-        lc.setDamage(Power * Time.deltaTime);
+        lc.setDamage(Power * Time.deltaTime);    
+    }
+
+    private void PlayFireSound()
+    {
+        audioSource.volume = 1;
+        audioSource.Play();
+        audioSource.loop = true;
+    }
+
+    private void StopFireSound()
+    {
+        audioSource.loop = false;      
     }
 }

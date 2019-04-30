@@ -4801,7 +4801,8 @@ GameObject:
   - component: {fileID: 4936321199662828740}
   - component: {fileID: 6947417799257813637}
   - component: {fileID: 4936321199662828743}
-  - component: {fileID: 5624003836873508681}
+  - component: {fileID: 7662244353495004035}
+
   m_Layer: 0
   m_Name: FlamesParticleEffect
   m_TagString: Untagged
@@ -9320,7 +9321,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerOn: 0
   Power: 5
---- !u!82 &5624003836873508681
+
+  fire: {fileID: 8300000, guid: f7836d6a0d795db4d87bcbc7bf22c2ae, type: 3}
+
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9330,11 +9333,13 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
+
   m_audioClip: {fileID: 8300000, guid: 2f8317e30370ad1449a94ec677e1e634, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 1.7
   Loop: 1
+
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -9443,7 +9448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4936321199919602281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.004, y: 0, z: 0}
+  m_LocalPosition: {x: 0.004, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4936321199308362324}
