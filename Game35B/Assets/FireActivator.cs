@@ -55,11 +55,12 @@ public class FireActivator : MonoBehaviour
     {
         audioSource.clip = fire;
         audioSource.Play();
+        audioSource.loop = true;
     }
 
     private void StopFireSound()
     {
         audioSource.clip = fire;
-        audioSource.Stop();
+        audioSource.loop = false;
     }
 }
