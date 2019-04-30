@@ -19,6 +19,7 @@ public class FireActivator : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();      
         flames.Stop();
         audioSource.clip = fire;
+        
         isPlayerOn = false;
         Power = 5.0f;
     }
@@ -26,7 +27,11 @@ public class FireActivator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        if (audioSource.loop==false && audioSource.volume > 0f)
+        {
+            audioSource.volume -= 0.01f;
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,12 +56,13 @@ public class FireActivator : MonoBehaviour
 
     private void PlayFireSound()
     {
+        audioSource.volume = 1;
         audioSource.Play();
         audioSource.loop = true;
     }
 
     private void StopFireSound()
     {
-        audioSource.loop = false;
+        audioSource.loop = false;      
     }
 }

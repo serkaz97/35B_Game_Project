@@ -9320,7 +9320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerOn: 0
   Power: 0
-  fire: {fileID: 8300000, guid: 4176bc263649faa4080e1175884b6036, type: 3}
+  fire: {fileID: 8300000, guid: f7836d6a0d795db4d87bcbc7bf22c2ae, type: 3}
 --- !u!82 &7662244353495004035
 AudioSource:
   m_ObjectHideFlags: 0
