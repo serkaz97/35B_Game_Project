@@ -4800,8 +4800,8 @@ GameObject:
   - component: {fileID: 4936321199662828741}
   - component: {fileID: 4936321199662828740}
   - component: {fileID: 4936321199662828742}
-  - component: {fileID: 4936321199662828743}
   - component: {fileID: 5794045639221897297}
+  - component: {fileID: 8659162377733614193}
   m_Layer: 0
   m_Name: FlamesParticleEffect
   m_TagString: Untagged
@@ -9306,21 +9306,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4936321199662828743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4936321199662828744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1281ffc28edad834cb17e7c13304df21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayerOn: 0
-  Power: 5
-  fire: {fileID: 8300000, guid: 4176bc263649faa4080e1175884b6036, type: 3}
 --- !u!82 &5794045639221897297
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9417,6 +9402,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8659162377733614193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936321199662828744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e337a85e129fae544b63dbfdb82a93c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerOn: 0
+  Power: 5
+  fire: {fileID: 8300000, guid: b6da2e92d97da0948b933f3b5ec46045, type: 3}
 --- !u!1 &4936321199919602281
 GameObject:
   m_ObjectHideFlags: 0

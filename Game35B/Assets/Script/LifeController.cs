@@ -40,8 +40,12 @@ public class LifeController : MonoBehaviour
     {
         if (LifeLevel >= 0)
             LifeLevel -= damage;
-        else
-           Death();
+        if (LifeLevel < 0)
+        {
+            LifeLevel = 0;
+            Debug.Log("Player Is Dead");
+        }
+
     }
 
     public void restoreLife(float life)
