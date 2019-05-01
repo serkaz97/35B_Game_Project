@@ -19,27 +19,33 @@ public class LifeController : MonoBehaviour
         isHealing = false;
     }
 
-
     void Update()
     {
-        counter += Time.deltaTime;
+        if (LifeLevel < 100 && counter <= 0)
+        {
+            counter = 5;
+        }
+        else
+        {
+            counter -= Time.deltaTime;
+        }
 
-        if (counter > 5 && isHealing == false)
+        if (counter < 0 && isHealing == false && LifeLevel < 100)
         {
             StartCoroutine(Healing());
-            counter = 0;
         }
     }
 
     public void setDamage(float damage)
     {
-        if(LifeLevel>=0)
+        if (LifeLevel >= 0)
             LifeLevel -= damage;
         if (LifeLevel < 0)
         {
             LifeLevel = 0;
             Debug.Log("Player Is Dead");
         }
+
     }
 
     public void restoreLife(float life)
@@ -51,16 +57,27 @@ public class LifeController : MonoBehaviour
     {
         Debug.Log("Leczenie");
 
+        float currentHealth = LifeLevel;
         isHealing = true;
 
         while (LifeLevel < 100)
         {
-            LifeLevel += 0.1f;
-            yield return new WaitForSeconds(1f);
+            LifeLevel += 0.5f;
+            yield return new WaitForSeconds(0.5f);
+
+            if (LifeLevel < currentHealth)
+            {
+                break;
+            }
+
+            currentHealth = LifeLevel;
         }
 
         isHealing = false;
     }
 
-  
+    private void Death()
+    {
+        Debug.Log("Gracz Umiera");
+    }
 }
