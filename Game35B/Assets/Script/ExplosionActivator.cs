@@ -8,7 +8,6 @@ public class ExplosionActivator : MonoBehaviour
     private AudioSource audioSource;
     private LifeController lc;
 
-    public bool isPlayerOn;
     public float Power = 5.0f;
     public AudioClip fire;
 
@@ -17,7 +16,6 @@ public class ExplosionActivator : MonoBehaviour
         explosion = gameObject.GetComponent<ParticleSystem>();
         audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = fire;
-        isPlayerOn = false;
         audioSource.volume = 0f;
         explosion.Stop();
     }
@@ -26,7 +24,6 @@ public class ExplosionActivator : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
-        isPlayerOn = true;
         explosion.Play();
         audioSource.Play();
         audioSource.volume = 1.0f;
