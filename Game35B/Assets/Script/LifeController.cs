@@ -11,7 +11,7 @@ public class LifeController : MonoBehaviour
     private float counter;
 
     private bool isHealing;
-    // Start is called before the first frame update
+
     void Start()
     {
         LifeLevel = 100.0f;
@@ -19,7 +19,7 @@ public class LifeController : MonoBehaviour
         isHealing = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         counter += Time.deltaTime;
@@ -36,7 +36,10 @@ public class LifeController : MonoBehaviour
         if(LifeLevel>=0)
             LifeLevel -= damage;
         if (LifeLevel < 0)
+        {
             LifeLevel = 0;
+            Debug.Log("Player Is Dead");
+        }
     }
 
     public void restoreLife(float life)
