@@ -35,6 +35,8 @@ public class LifeController : MonoBehaviour
     {
         if(LifeLevel>=0)
             LifeLevel -= damage;
+        if (LifeLevel < 0)
+            LifeLevel = 0;
     }
 
     public void restoreLife(float life)
