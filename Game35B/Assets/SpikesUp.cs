@@ -28,12 +28,12 @@ public class SpikesUp : MonoBehaviour
         float up = 3;
         while (gameObject.transform.localPosition.y < startPos.y + up)
         {
-            gameObject.transform.Translate(Vector3.forward * 6f * Time.deltaTime);
+            gameObject.transform.Translate(Vector3.up * 6f * Time.deltaTime);
             yield return null;
         }
         while (gameObject.transform.localPosition.y > startPos.y)
         {
-            gameObject.transform.Translate(Vector3.forward * -1.5f * Time.deltaTime);
+            gameObject.transform.Translate(Vector3.up * -1.5f * Time.deltaTime);
             yield return null;
         }
 
