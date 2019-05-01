@@ -1,21 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &1270208150
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519163270524479090}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.012
-  m_Height: 0.15
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -0.1}
---- !u!136 &1270208151
-CapsuleCollider:
+--- !u!65 &597210171820298438
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -24,10 +10,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.01
-  m_Height: 0.04
-  m_Direction: 2
-  m_Center: {x: 0.0000000018626451, y: 0, z: -0.01}
+  serializedVersion: 2
+  m_Size: {x: 0.020000003, y: 0.019999996, z: 0.05}
+  m_Center: {x: 0.0000000018626451, y: 0, z: -0.016}
 --- !u!114 &1270208149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,6 +26,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 5
+--- !u!65 &2444619651501128217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519163270524479090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000003, y: 0.019999996, z: 0.15}
+  m_Center: {x: 0.0000000018626451, y: 0, z: -0.116}
 --- !u!1001 &519163270524510420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50,7 +48,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100006, guid: aad40827ecc8414489a7ec30071b23f3, type: 3}
       propertyPath: m_Name
-      value: spike
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: aad40827ecc8414489a7ec30071b23f3, type: 3}
       propertyPath: m_LocalPosition.x

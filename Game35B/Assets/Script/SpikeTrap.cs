@@ -11,7 +11,7 @@ public class SpikeTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Power = 4;
+        Power = 5;
     }
 
     // Update is called once per frame
