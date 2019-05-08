@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: baa8ddda97a16374484e2bc9d7a115b0
+guid: 918e907b2939c7a41a848c58e912cfdb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -261,8 +261,11 @@ ModelImporter:
     4300058: GZM_Head
     7400000: Default Take
     7400002: Idle
-    7400004: Run
-    7400006: Walk
+    7400004: Jump
+    7400006: Pull
+    7400008: Push
+    7400010: Run
+    7400012: Walk
     9500000: //RootNode
     13700000: basicRig_Body
     2186277476908879412: ImportLogs
@@ -341,7 +344,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: basicRig
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
