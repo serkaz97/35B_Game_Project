@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LifeController : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class LifeController : MonoBehaviour
         if (LifeLevel < 0)
         {
             LifeLevel = 0;
-            Debug.Log("Player Is Dead");
+            Death();
         }
 
     }
@@ -78,6 +79,7 @@ public class LifeController : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("Gracz Umiera");
+        Debug.Log("Player Is Dead");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

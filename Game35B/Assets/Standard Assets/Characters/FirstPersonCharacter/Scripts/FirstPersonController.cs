@@ -15,6 +15,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_RunSpeed;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
         [SerializeField] private float m_JumpSpeed;
+        [SerializeField] private float m_MinJumpSpeed;
+        [SerializeField] private float m_MaxJumpSpeed;
+        [SerializeField] private float m_GlidingSpeed;
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
         [SerializeField] private MouseLook m_MouseLook;
@@ -62,10 +65,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             RotateView();
+
             // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
+            if (!m_Jump && m_CharacterController.isGrounded)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                //m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                if (CrossPlatformInputManager.GetButton("Jump"))
+                {
+                    m_JumpSpeed += 5f * Time.deltaTime;
+                }
+
+                if (CrossPlatformInputManager.GetButtonUp("Jump"))
+                {
+                    if (m_JumpSpeed > m_MaxJumpSpeed)
+                    {
+                        m_JumpSpeed = m_MaxJumpSpeed;
+                    }
+
+                    m_Jump = true;
+                }
             }
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
@@ -74,7 +92,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 PlayLandingSound();
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
+                m_JumpSpeed = m_MinJumpSpeed;
             }
+
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
                 m_MoveDir.y = 0f;
@@ -123,7 +143,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             else
             {
-                m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
+                if (CrossPlatformInputManager.GetButton("Jump") && m_CharacterController.velocity.y < 0)
+                {
+                    m_MoveDir.y = -m_GlidingSpeed;
+                }
+                else
+                {
+                    m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+                }
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
