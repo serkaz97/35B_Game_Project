@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5aec1b0e3388b8b4998a873f76d0138f
+guid: 613cbfade278ce847807ab9c2cc2b6a5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -14,6 +14,7 @@ ModelImporter:
     4300000: 15792_Novelty_Head_Full_Demon
     7400000: Default Take
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1

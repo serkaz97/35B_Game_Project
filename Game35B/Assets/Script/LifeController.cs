@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LifeController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class LifeController : MonoBehaviour
     private float counter;
 
     private bool isHealing;
-    // Start is called before the first frame update
+
     void Start()
     {
         LifeLevel = 100.0f;
@@ -19,22 +20,33 @@ public class LifeController : MonoBehaviour
         isHealing = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        counter += Time.deltaTime;
+        if (LifeLevel < 100 && counter <= 0)
+        {
+            counter = 5;
+        }
+        else
+        {
+            counter -= Time.deltaTime;
+        }
 
-        if (counter > 5 && isHealing == false)
+        if (counter < 0 && isHealing == false && LifeLevel < 100)
         {
             StartCoroutine(Healing());
-            counter = 0;
         }
     }
 
     public void setDamage(float damage)
     {
-        if(LifeLevel>=0)
+        if (LifeLevel >= 0)
             LifeLevel -= damage;
+        if (LifeLevel < 0)
+        {
+            LifeLevel = 0;
+            Death();
+        }
+
     }
 
     public void restoreLife(float life)
@@ -46,16 +58,28 @@ public class LifeController : MonoBehaviour
     {
         Debug.Log("Leczenie");
 
+        float currentHealth = LifeLevel;
         isHealing = true;
 
         while (LifeLevel < 100)
         {
-            LifeLevel += 0.1f;
-            yield return new WaitForSeconds(1f);
+            LifeLevel += 0.5f;
+            yield return new WaitForSeconds(0.5f);
+
+            if (LifeLevel < currentHealth)
+            {
+                break;
+            }
+
+            currentHealth = LifeLevel;
         }
 
         isHealing = false;
     }
 
-  
+    private void Death()
+    {
+        Debug.Log("Player Is Dead");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
