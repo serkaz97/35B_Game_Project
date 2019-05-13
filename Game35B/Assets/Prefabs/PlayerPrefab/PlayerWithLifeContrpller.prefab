@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1364269013926406574}
   - component: {fileID: 1364269013924352814}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerWithLifeContrpller
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,10 @@ MonoBehaviour:
   m_WalkSpeed: 5
   m_RunSpeed: 10
   m_RunstepLenghten: 0.7
-  m_JumpSpeed: 10
+  m_JumpSpeed: 0
+  m_MinJumpSpeed: 7
+  m_MaxJumpSpeed: 20
+  m_GlidingSpeed: 3
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:
