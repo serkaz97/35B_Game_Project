@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikesUp : MonoBehaviour
+public  class SpikesUp : MonoBehaviour
 {
     private Vector3 startPos;
     // Start is called before the first frame update
