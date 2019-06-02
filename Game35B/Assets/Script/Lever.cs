@@ -108,4 +108,20 @@ public class Lever : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+
+        Gizmos.color = Color.red;
+
+        if (door1)
+        {
+            Gizmos.DrawLine(transform.position, door1.transform.position);
+        }
+
+        if (door2)
+        {
+            Gizmos.DrawLine(transform.position, door2.transform.position);
+        }
+    }
 }
