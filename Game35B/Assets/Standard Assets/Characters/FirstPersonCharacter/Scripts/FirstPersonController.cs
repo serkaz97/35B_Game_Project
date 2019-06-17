@@ -10,6 +10,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        [SerializeField] private Animator m_Animator;
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -83,6 +84,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     }
 
                     m_Jump = true;
+                    m_Animator.SetTrigger("jump");
                 }
             }
 
@@ -101,6 +103,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            m_Animator.SetFloat("velocity", m_CharacterController.velocity.magnitude);
+            m_Animator.SetBool("jumping", m_Jumping);
+            m_Animator.SetBool("grounded", m_CharacterController.isGrounded);
         }
 
 
