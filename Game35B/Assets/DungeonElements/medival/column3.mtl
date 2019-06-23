@@ -1,0 +1,32 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 15.06.2019 13:55:57
+
+newmtl Stone_1
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\Stone_1_DiffuseColor_Composite.tga
+	map_Kd maps\Stone_1_DiffuseColor_Composite.tga
+	map_bump -bm 0.3000 maps\Stone_1_NormalMap_Normal Bump.tga
+
+newmtl Stone_2
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\Stone_2_DiffuseColor_Composite.tga
+	map_Kd maps\Stone_2_DiffuseColor_Composite.tga
+	map_bump -bm 0.3000 maps\Stone_2_NormalMap_Normal Bump.tga
