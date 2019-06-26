@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LifeController : MonoBehaviour
 {
@@ -48,11 +47,6 @@ public class LifeController : MonoBehaviour
         }
 
     }
-
-    public void restoreLife(float life)
-    {
-
-    }
     
     private IEnumerator Healing()
     {
@@ -79,7 +73,6 @@ public class LifeController : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("Player Is Dead");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.PlayerDeath();
     }
 }
