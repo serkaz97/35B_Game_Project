@@ -61,7 +61,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 
-
         // Update is called once per frame
         private void Update()
         {
@@ -107,6 +106,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Animator.SetFloat("velocity", m_CharacterController.velocity.magnitude);
             m_Animator.SetBool("jumping", m_Jumping);
             m_Animator.SetBool("grounded", m_CharacterController.isGrounded);
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                m_Animator.SetTrigger("push");
+            }
+            else if (Input.GetButtonDown("Fire2"))
+            {
+                m_Animator.SetTrigger("pull");
+            }
         }
 
 
