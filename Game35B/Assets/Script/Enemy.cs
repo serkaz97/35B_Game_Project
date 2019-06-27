@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent _agent;
     private Rigidbody _rb;
+    private Animator _animator;
 
 
     void Start()
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
+        _animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private IEnumerator Pause()
@@ -26,19 +28,40 @@ public class Enemy : MonoBehaviour
         _agent.enabled = true;
     }
 
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down * 2.3f);
+    }
+
     void Update()
     {
-        if (_target)
+        if (!IsGrounded())
         {
-            if(Vector3.Distance(transform.position, _target.position) > 3f)
+            _agent.enabled = false;
+            _rb.isKinematic = false;
+        }
+
+        if (_agent.enabled)
+        {
+            if (_target)
             {
-                _agent.SetDestination(_target.position);
-                _agent.isStopped = false;
+                if (Vector3.Distance(transform.position, _target.position) > 3f)
+                {
+                    _agent.SetDestination(_target.position);
+                    _agent.isStopped = false;
+                }
+                else
+                {
+                    _agent.isStopped = true;
+                    _animator.SetTrigger("attack");
+                }
             }
             else
             {
                 _agent.isStopped = true;
             }
+
+            _animator.SetBool("moving", !_agent.isStopped);
         }
     }
 
@@ -48,7 +71,8 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
         _rb.isKinematic = false;
         _agent.enabled = false;
-        _rb.AddForce(direction * 7f, ForceMode.Impulse);
+        _rb.AddForce(direction * 13f, ForceMode.Impulse);
+        _animator.SetBool("moving", false);
         StartCoroutine(Pause());
     }
 
@@ -58,7 +82,8 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
         _rb.isKinematic = false;
         _agent.enabled = false;
-        _rb.AddForce(direction * 7f, ForceMode.Impulse);
+        _rb.AddForce(direction * 13f, ForceMode.Impulse);
+        _animator.SetBool("moving", false);
         StartCoroutine(Pause());
     }
 
