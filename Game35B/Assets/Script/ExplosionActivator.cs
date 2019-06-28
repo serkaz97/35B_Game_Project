@@ -11,6 +11,8 @@ public class ExplosionActivator : MonoBehaviour
     public float Power = 5.0f;
     public AudioClip fire;
 
+    private bool canActivate = true;
+
     void Start()
     {
         explosion = gameObject.GetComponent<ParticleSystem>();
@@ -23,11 +25,15 @@ public class ExplosionActivator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
-        explosion.Play();
-        audioSource.Play();
-        audioSource.volume = 1.0f;
-        lc.setDamage(Power*10);
+        if (other.transform.CompareTag("Player") && canActivate)
+        {
+            lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
+            canActivate = false;
+            explosion.Play();
+            audioSource.Play();
+            audioSource.volume = 1.0f;
+            lc.setDamage(Power * 10);
+        }
     }
 
 }

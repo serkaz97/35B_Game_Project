@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
@@ -10,6 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        [SerializeField] private Slider m_JumpSlider;
         [SerializeField] private Animator m_Animator;
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -59,6 +61,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            m_JumpSlider.minValue = m_MinJumpSpeed;
+            m_JumpSlider.maxValue = m_MaxJumpSpeed;
+            m_JumpSlider.gameObject.SetActive(false);
         }
 
         // Update is called once per frame
@@ -72,7 +77,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 //m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
                 if (CrossPlatformInputManager.GetButton("Jump"))
                 {
+                    m_JumpSlider.gameObject.SetActive(true);
                     m_JumpSpeed += 5f * Time.deltaTime;
+                    m_JumpSlider.value = m_JumpSpeed;
                 }
 
                 if (CrossPlatformInputManager.GetButtonUp("Jump"))
@@ -84,6 +91,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                     m_Jump = true;
                     m_Animator.SetTrigger("jump");
+                    m_JumpSlider.gameObject.SetActive(false);
                 }
             }
 

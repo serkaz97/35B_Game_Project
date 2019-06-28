@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LifeController : MonoBehaviour
 {
+    public Slider healthBar;
+    public GameObject splashScreen;
 
     public float LifeLevel;
 
@@ -12,11 +15,15 @@ public class LifeController : MonoBehaviour
 
     private bool isHealing;
 
+    private float timeToReload;
+
     void Start()
     {
         LifeLevel = 100.0f;
         counter = 0;
         isHealing = false;
+        timeToReload = 3f;
+        splashScreen.SetActive(false);
     }
 
     void Update()
@@ -34,6 +41,8 @@ public class LifeController : MonoBehaviour
         {
             StartCoroutine(Healing());
         }
+
+        healthBar.value = LifeLevel / 100f;
     }
 
     public void setDamage(float damage)
@@ -73,6 +82,16 @@ public class LifeController : MonoBehaviour
 
     private void Death()
     {
+        splashScreen.SetActive(true);
         GameManager.Instance.PlayerDeath();
+        //if (timeToReload <= 0)
+        //{
+
+        //}
+        //else
+        //{
+        //    timeToReload -= Time.deltaTime;
+        //}
+
     }
 }

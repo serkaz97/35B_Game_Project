@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Level 1 Lucifier's Dungeons.unity
+    guid: 5b3f10c995261404f8ed9f078bd5b74c
+  - enabled: 1
+    path: Assets/Scenes/Again.unity
+    guid: 67542adcf7435734d940c52af594eafa
   m_configObjects: {}

@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     private GameObject _player;
     [SerializeField] private Vector3 _checkpointPosition;
     [SerializeField] private Vector3 _checkpointRotation;
+    private float timer = 3f;
 
     private void SetPlayerTransform()
     {
@@ -27,6 +28,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         SceneManager.sceneLoaded += (arg0, mode) => SetPlayerTransform();
+        GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<LifeController>().LifeLevel = 100;
     }
 
     public void PlayerDeath()
@@ -44,5 +46,23 @@ public class GameManager : Singleton<GameManager>
     {
         _player = GameObject.FindWithTag("Player");
         return _player;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            timer = 3f;
+        }
     }
 }

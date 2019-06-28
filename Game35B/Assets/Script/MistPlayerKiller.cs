@@ -25,11 +25,17 @@ public class MistPlayerKiller : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        lc.setDamage(power*Time.deltaTime);
+        if (other.transform.CompareTag("Player"))
+        {
+            lc.setDamage(power * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
+        if (other.transform.CompareTag("Player"))
+        {
+            lc = GameObject.FindWithTag("PlayerStats").GetComponent<LifeController>();
+        }
     }
 }
